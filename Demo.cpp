@@ -57,21 +57,40 @@ int main() {
 	contessa.income();
 
 	// throws exception, it is duke's turn now
-	assassin.income();
+	try 
+	{
+		assassin.income();
+	}
+	catch(exception& ex) 
+	{
+		cout << "   caught exception: " << ex.what() << endl;
+	}
 
 	duke.income();
 	assassin.foreign_aid();
 
 	// throws exception, the last operation duke performed
 	// is income, which cannot be blocked by any role
+	try 
+	{
 	captain.block(duke);
+	}
+	catch(exception& ex) 
+	{
+		cout << "   caught exception: " << ex.what() << endl;
+	}
 
 	cout << duke.coins() << endl; // prints 2
 	cout << assassin.coins() << endl; // prints 3
 
 	// throws exception, the last operation duke performed
 	// is foreign aid, which cannot be blocked by contessa
-	contessa.block(assassin);
+	try {
+		contessa.block(assassin);
+	}
+	catch (exception& ex){
+		cout << "   caught exception: " << ex.what() << endl;
+	}
 
 	duke.block(assassin);
 	cout << assassin.coins() << endl; // prints 1
